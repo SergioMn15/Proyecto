@@ -40,6 +40,20 @@ app.post('/login', (req, res) => {
     });
 });
 
+// Ruta para registrar nuevos usuarios (Formato compatible)
+app.post('/registro', (req, res) => {
+    const { nombre, telefono, password } = req.body;
+    const query = "INSERT INTO usuarios (nombre, telefono, password, rol) VALUES (?, ?, ?, 'cliente')";
+
+    db.query(query, [nombre, telefono, password], (err, result) => {
+        if (err) {
+            console.error("Error en Aiven:", err);
+            return res.status(500).json({ success: false, message: "Error al registrar o teléfono duplicado" });
+        }
+        res.json({ success: true, message: "Usuario creado con éxito" });
+    });
+});
+
 app.listen(process.env.PORT, () => {
     console.log(` Servidor corriendo en http://localhost:${process.env.PORT}`);
 });
