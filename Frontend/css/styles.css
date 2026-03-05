@@ -1,0 +1,93 @@
+/* ==========================================
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================== */
+:root {
+    --color-primario: #0d6efd;    /* Azul Bootstrap */
+    --color-secundario: #ffc107;  /* Amarillo Warning */
+    --color-oscuro: #212529;      /* Negro Dark */
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    scroll-behavior: smooth; /* Para que el menú baje suavemente */
+}
+
+/* ==========================================
+   2. COMPONENTES REUTILIZABLES (Botones, Cards)
+   ========================================== */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+}
+
+.btn-warning {
+    font-weight: bold;
+    color: #fff;
+}
+
+/* ==========================================
+   3. SECCIONES ESPECÍFICAS
+   ========================================== */
+
+/* Navbar */
+.navbar-brand {
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* Hero Section (Bienvenida) */
+header {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('../assets/hero-bg.jpg'); /* Imagen opcional */
+    background-size: cover;
+    background-position: center;
+    color: white !important;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+}
+
+header .bg-light {
+    background-color: transparent !important;
+}
+
+/* Sección de Menú */
+#menu h2 {
+    position: relative;
+    padding-bottom: 15px;
+}
+
+#menu h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-secundario);
+}
+
+/* ==========================================
+   4. VISTAS ESPECIALES (Admin / Cliente)
+   ========================================== */
+.admin-panel {
+    border-left: 4px solid var(--color-primario);
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+/* ==========================================
+   5. RESPONSIVE (Ajustes para celulares)
+   ========================================== */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-light">
+    <script>
+        // EL GUARDIÁN: Revisa la sesión antes de mostrar nada
+        const user = JSON.parse(localStorage.getItem('usuario'));
+        if (!user || user.rol !== 'admin') {
+            alert("Acceso denegado. Solo administradores.");
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <nav class="navbar navbar-dark bg-danger shadow">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">🛠️ Panel Administrativo</span>
+            <button onclick="cerrarSesion()" class="btn btn-outline-light btn-sm">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="card shadow border-0">
+            <div class="card-body p-5">
+                <h2 class="fw-bold">Bienvenido, <span id="nombreAdmin" class="text-danger"></span></h2>
+                <p class="text-muted">Gestión de base de datos en Aiven activa.</p>
+                <hr>
+                <div class="row text-center mt-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="p-4 border rounded bg-white shadow-sm hover-card">
+                            <h3 class="display-6">📦</h3>
+                            <h5>Pedidos</h5>
+                            <button class="btn btn-primary w-100">Ver flujo</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-4 border rounded bg-white shadow-sm hover-card">
+                            <h3 class="display-6">🍔</h3>
+                            <h5>Menú</h5>
+                            <button class="btn btn-primary w-100">Editar Platillos</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-4 border rounded bg-white shadow-sm hover-card">
+                            <h3 class="display-6">👥</h3>
+                            <h5>Usuarios</h5>
+                            <button class="btn btn-primary w-100">Ver en Aiven</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sincroniza el nombre desde la base de datos
+        if (user) {
+            document.getElementById('nombreAdmin').innerText = user.nombre;
+        }
+
+        function cerrarSesion() {
+            localStorage.removeItem('usuario'); // Limpia la memoria
+            window.location.href = 'login.html'; // Expulsa al login
+        }
+    </script>
+</body>
+</html>
